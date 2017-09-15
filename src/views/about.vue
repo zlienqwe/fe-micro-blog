@@ -1,7 +1,7 @@
 <template>
     <div class="about">
         <MainNav></MainNav>
-        关于
+        <div>关于</div>
     </div>
 </template>
 

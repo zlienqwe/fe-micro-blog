@@ -27,7 +27,6 @@
         }
       },
       handleSelect (val) {
-        console.log(val)
       }
     },
     created() {
@@ -41,4 +40,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .navheader{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:1;
+  }
 </style>

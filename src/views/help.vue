@@ -1,7 +1,7 @@
 <template>
     <div class="help">
         <MainNav></MainNav>
-        帮助
+        <div>帮助</div>
     </div>
 </template>
 

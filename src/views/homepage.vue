@@ -46,6 +46,7 @@
         border-radius: 5px;
         min-height: 500px;
     }
-    .el-col{
+    .el-row{
+        margin-top: 79px;
     }
 </style>

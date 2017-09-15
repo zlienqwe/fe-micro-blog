@@ -1,18 +1,26 @@
 <template>
     <div class="detail">
         <BreadCrumb></BreadCrumb>
-        <h1>{{ poster_detail.title }}</h1>
-        <p>{{ poster_detail.content }}</p>
-        <i class="el-icon-edit" @click="addComment"></i>
-        <CommentZone></CommentZone>
+        <el-card>
+            <h1>{{ poster_detail.title }}</h1>
+            <p>{{ poster_detail.content }}</p>
+            <p>{{ poster_detail.create_time | timefilter}}</p>
+            <el-tooltip class="item" effect="dark" content="发表评论" placement="top">
+                <el-button type="primary" icon="edit" @click="addComment"></el-button>
+            </el-tooltip>
+        </el-card>
+
+        <CommentZone>
+        </CommentZone>
         <CommentPopup></CommentPopup>
     </div>
 </template>
 
 <script>
-    import BreadCrumb from '../components/BreadCrumb.vue'
-    import CommentPopup from '../components/CommentPopup.vue'
-    import CommentZone from '../components/CommentZone.vue'
+  import BreadCrumb from '../components/BreadCrumb.vue'
+  import CommentPopup from '../components/CommentPopup.vue'
+  import CommentZone from '../components/CommentZone.vue'
+
   export default {
     name: 'detail',
     data() {
@@ -22,12 +30,11 @@
       }
     },
     methods: {
-      getCurrentPosterDetail(id){
+      getCurrentPosterDetail(id) {
         var api = process.env.API_ROOT + '/post/detail'
         this.$http.post(api, {
           id: id
-        }).then(response =>{
-          console.log(response)
+        }).then(response => {
           this.poster_detail = response.data.data;
           var breadcrumbroute = [
             {
@@ -41,7 +48,7 @@
           this.$store.commit('setbreadcrumbroute', breadcrumbroute)
         })
       },
-      addComment(){
+      addComment() {
         this.$store.commit('toogleCommentPopup', true)
         this.$store.commit('changeCurrentPosterId', this.poster_detail.id)
       }
@@ -61,7 +68,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .detail{
+    .detail {
         padding: 30px;
+    }
+
+    .el-card {
+        margin-top: 20px;
     }
 </style>

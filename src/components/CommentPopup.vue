@@ -37,7 +37,6 @@
           if (valid) {
             var api = process.env.API_ROOT + '/comment/new'
             this.form.poster_id = this.$store.state.currentPosterId;
-            console.log(this.form)
             this.$http.post(api, this.form).then(response => {
               if (response.data.flag) {
                 this.$message({
@@ -46,7 +45,7 @@
                 });
 
                 var currentPosterComment = this.$store.state.currentPosterComment;
-                currentPosterComment.unshift(JSON.parse(JSON.stringify(this.form)));
+                currentPosterComment.unshift(JSON.parse(JSON.stringify(response.data.result)));
                 this.$store.commit('changeCurrentPosterComment', currentPosterComment);
                 
                 this.$store.commit('toogleCommentPopup', false);
